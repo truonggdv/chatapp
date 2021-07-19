@@ -13,9 +13,11 @@ class RedisEventListener
      *
      * @return void
      */
+
+    // public $message;
     public function __construct()
     {
-        //
+       
     }
 
     /**
@@ -26,6 +28,6 @@ class RedisEventListener
      */
     public function handle(RedisEvent $event)
     {
-        //
+        return $event->message;
     }
 }

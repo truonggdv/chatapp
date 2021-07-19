@@ -1,5 +1,7 @@
 const express = require("express")
+var cors = require('cors');
 var app = express();
+app.use(cors());
 var server = app.listen(6001);
 var io = require('socket.io')(server, {
     cors: {
