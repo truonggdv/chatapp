@@ -21,7 +21,6 @@ io.on('connection',function(socket){
 var Redis = require('ioredis');
 var redis = new Redis(1000);
 redis.psubscribe("*",function(error,count){
-
 })
 redis.on('pmessage',function(partner,channel,message){
     console.log(message);

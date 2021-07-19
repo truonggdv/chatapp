@@ -35,11 +35,12 @@ class RedisEvent
      */
     public function broadcastOn()
     {
-        // return new PrivateChannel('channel-name');
-        // return ['chat'];
-        return new PrivateChannel('chat');
+        return ['message'];
+
+        // return new PrivateChannel('chat');
     }
     public function broadcastAs(){
+        dd($this->message);
         return 'message';
     }
 }

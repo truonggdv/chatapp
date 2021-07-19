@@ -16,7 +16,7 @@ class RedisController extends Controller
     public function postMessage(Request $request){
         $messages = Message::create($request->all());
         $a = event(new RedisEvent($messages));
-        dd($a);
+        // dd($a);
         return redirect()->back();
     }
 }

@@ -26,7 +26,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.1.3/socket.io.min.js"></script>
 <script>
     var socket = io("http://localhost:6001");
-    socket.on('chat:message',function(data){
+    socket.on('message:message',function(data){
+        console.log(data)
         if($('#'+data.id).length==0){
             $(".data").append('<p>'+data.author+':'+data.content+'</p>')
         }
