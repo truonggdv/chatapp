@@ -11,7 +11,7 @@ use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use App\Message;
 
-class RedisEvent
+class RedisEvent implements ShouldBroadcast //cần implements mới lắng nghe đc sự kiện
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
@@ -23,7 +23,7 @@ class RedisEvent
 
     public $message;
 
-    public function __construct($message)
+    public function __construct(Message $message)
     {
         $this->message = $message;
     }
@@ -35,12 +35,17 @@ class RedisEvent
      */
     public function broadcastOn()
     {
-        return ['message'];
+        // tên channel
+        return ['channel_chat_support'];
+        // return ['chat'];
 
         // return new PrivateChannel('chat');
     }
     public function broadcastAs(){
-        dd($this->message);
-        return 'message';
+        // tên event có thể chọn event mặc định để chat chung
+        // return $this->message->tag;
+        // return 'message';
+        // Nếu chat riêng giữa 2 người nên đặt tag cho cuộc hội thoại để chỉ 2 hoặc 1 nhóm người xem được
+        return $this->message->tag;
     }
 }

@@ -14,7 +14,9 @@
     </div>
     <form action="/message" method="post">
         @csrf
-        Name: <input type="text" name="author">
+        tag: <input type="text" name="tag" value="{{ $tag }}">
+        <br>
+        Name: <input type="text" name="author" value="">
         <br>
         <br>
         <textarea name="content" id="" cols="50" rows="5"></textarea>
@@ -26,7 +28,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.1.3/socket.io.min.js"></script>
 <script>
     var socket = io("http://localhost:6001");
-    socket.on('message:message',function(data){
+    socket.on('channel_chat_support:{{ $tag }}',function(data){
+    // socket.on('chat:message',function(data){
         console.log(data)
         if($('#'+data.id).length==0){
             $(".data").append('<p>'+data.author+':'+data.content+'</p>')

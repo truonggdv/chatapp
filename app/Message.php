@@ -8,5 +8,5 @@ class Message extends Model
 {
     protected $table = "messages";
 
-    protected $fillable = ['author','content'];
+    protected $fillable = ['author','content', 'tag'];
 }
